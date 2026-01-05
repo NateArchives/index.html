@@ -41,10 +41,7 @@ body {
 }
 
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Staggered fade-in for cards */
@@ -89,6 +86,30 @@ button:hover{background:#f4c842;color:#0a2540;}
 
 #contact p,#contact a{color:#f4c842;font-weight:bold;text-shadow:1px 1px 4px rgba(0,0,0,.6);}
 footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;border-radius:16px;margin-bottom:40px;}
+
+/* Modal styles */
+.modal {
+  display:none;
+  position:fixed;
+  z-index:999;
+  left:0;top:0;width:100%;height:100%;
+  background:rgba(0,0,0,0.75);
+  justify-content:center;align-items:center;
+}
+.modal-content {
+  background:white;
+  max-width:900px;
+  width:90%;
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+}
+.modal-close {
+  position:absolute;
+  top:12px;right:16px;
+  font-size:24px;
+  cursor:pointer;
+}
 </style>
 </head>
 
@@ -104,19 +125,19 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <section class="fade-in">
 <h2>Featured Creations</h2>
 <div class="products">
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/0cgJy')">
+<div class="card card-click-transition" onclick="openModal('modalDaily')">
 <img src="https://i.postimg.cc/Df6pt5fG/flatlay-bullet-journal-planner-decorative-stickers-pen-clean-workspace-organizing-self-improvement-c.jpg">
 <h3>Daily Planner</h3>
 <p>Stay focused, structured, and in control of your days.</p>
 </div>
 
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/hgWQA')">
+<div class="card card-click-transition" onclick="openModal('modalFinancial')">
 <img src="https://i.postimg.cc/g2ZDkKpK/Arrestox-Blue-Financial-Planning-Cover.jpg">
 <h3>Financial Tracker</h3>
 <p>Take ownership of your money and build smarter habits.</p>
 </div>
 
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/wEqJP')">
+<div class="card card-click-transition" onclick="openModal('modalStudy')">
 <img src="https://i.postimg.cc/Qt27z29t/images-(1).jpg">
 <h3>Study Guide eBook</h3>
 <p>Learn efficiently and study with confidence.</p>
@@ -127,34 +148,29 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <section class="fade-in">
 <h2>Explore the Archive</h2>
 <div class="products">
-
 <div class="card card-click-transition" onclick="openSection('pdfs')">
 <img src="https://i.postimg.cc/qR4cMVBL/Jot-Form-Pdf-Templates-03-1.png">
 <h3>PDF Templates</h3>
 </div>
-
 <div class="card card-click-transition" onclick="openSection('ebooks')">
 <img src="https://i.postimg.cc/vH3NJhhH/photo-1609895720459-394a6a8c99ed.jpg">
 <h3>eBooks</h3>
 </div>
-
 <div class="card card-click-transition" onclick="openSection('quotes')">
 <img src="https://i.postimg.cc/7Z1yJ0M2/il-fullxfull-4533301694-egko.jpg">
 <h3>Quotes & Poems</h3>
 </div>
-
 </div>
 </section>
 
 <section id="pdfs" class="hidden">
 <h2>PDF Templates</h2>
 <div class="products">
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/0cgJy')">
+<div class="card card-click-transition" onclick="openModal('modalDaily')">
 <img src="https://i.postimg.cc/Df6pt5fG/flatlay-bullet-journal-planner-decorative-stickers-pen-clean-workspace-organizing-self-improvement-c.jpg">
 <h3>Daily Planner</h3>
 </div>
-
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/hgWQA')">
+<div class="card card-click-transition" onclick="openModal('modalFinancial')">
 <img src="https://i.postimg.cc/g2ZDkKpK/Arrestox-Blue-Financial-Planning-Cover.jpg">
 <h3>Financial Planner</h3>
 </div>
@@ -164,7 +180,7 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <section id="ebooks" class="hidden">
 <h2>eBooks</h2>
 <div class="products">
-<div class="card card-click-transition" onclick="goToPayhip(this,'https://payhip.com/b/wEqJP')">
+<div class="card card-click-transition" onclick="openModal('modalStudy')">
 <img src="https://i.postimg.cc/Qt27z29t/images-(1).jpg">
 <h3>Study Guide eBook</h3>
 </div>
@@ -200,6 +216,28 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 
 <footer>© 2026 Nate Archives. All Rights Reserved.</footer>
 
+<!-- Modals for embedded Payhip products -->
+<div id="modalDaily" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('modalDaily')">&times;</span>
+    <iframe src="https://payhip.com/b/0cgJy" width="100%" height="600" frameborder="0"></iframe>
+  </div>
+</div>
+
+<div id="modalFinancial" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('modalFinancial')">&times;</span>
+    <iframe src="https://payhip.com/b/hgWQA" width="100%" height="600" frameborder="0"></iframe>
+  </div>
+</div>
+
+<div id="modalStudy" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('modalStudy')">&times;</span>
+    <iframe src="https://payhip.com/b/wEqJP" width="100%" height="600" frameborder="0"></iframe>
+  </div>
+</div>
+
 <script>
 function openSection(id){
   document.querySelectorAll('.hidden').forEach(sec=>sec.style.display="none");
@@ -210,8 +248,8 @@ function openSection(id){
 function goToPayhip(card,url){
   card.classList.add('fade'); // smooth fade effect
   setTimeout(()=>{
-    window.open(url,'_blank'); // open Payhip after 700ms
-    card.classList.remove('fade'); // reset
+    window.open(url,'_blank'); 
+    card.classList.remove('fade'); 
   },700);
 }
 
@@ -221,9 +259,13 @@ window.addEventListener('load', () => {
   cards.forEach((card, index) => {
     setTimeout(() => {
       card.classList.add('show');
-    }, index * 150); // 150ms between each card
+    }, index * 150); 
   });
 });
+
+// Modal functions
+function openModal(id){ document.getElementById(id).style.display='flex'; }
+function closeModal(id){ document.getElementById(id).style.display='none'; }
 </script>
 
 </body>
