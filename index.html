@@ -6,7 +6,6 @@
 <title>Nate Archives</title>
 
 <style>
-/* Base */
 body {
   margin:0;
   font-family: 'Times New Roman', Times, serif;
@@ -16,14 +15,14 @@ body {
   background: #000;
 }
 
-/* Parallax background */
+/* Background */
 .bg-layer {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 150%;
-  background: url('https://i.postimg.cc/KzZrfSTz/long-perspective-shot-vast-archive-storage-room-shelves-stretch-distance-either-side-filled-stacks-a.jpg') no-repeat center center;
+  background: url('https://i.postimg.cc/TYMtBSgn/long-row-books-shelves-library-narrow-hallway-filled-wooden-bookshelves-either-side-each-341609899.jpg') no-repeat center center;
   background-size: cover;
   transform: translateZ(-1px) scale(2);
   z-index: -1;
@@ -125,13 +124,16 @@ button:hover {
 }
 a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
 
-/* Full store button */
-#store-btn { 
-  display:block; 
-  margin:60px auto 0; 
-  text-align:center; 
+/* Filter Buttons */
+.filter-btns {
+  text-align:center;
+  margin-bottom:40px;
 }
-#store-btn button { padding:18px 36px; font-size:1.2em; border-radius:10px; }
+.filter-btns button {
+  margin:0 10px 10px 10px;
+  padding:10px 20px;
+  font-size:1em;
+}
 
 /* About Me */
 .about-container {
@@ -178,7 +180,6 @@ footer {
 
 <body>
 
-<!-- Background -->
 <div class="bg-layer"></div>
 
 <header>
@@ -192,12 +193,21 @@ footer {
   </nav>
 </header>
 
-<!-- Store -->
-<section id="store">
-  <h2>📚 Our Collection</h2>
+<!-- Catalog Section -->
+<section id="catalog">
+  <h2>📦 Catalog</h2>
+
+  <!-- Filter Buttons -->
+  <div class="filter-btns">
+    <button onclick="filterCategory('pdf')">PDF Templates</button>
+    <button onclick="filterCategory('ebook')">eBooks</button>
+    <button onclick="filterCategory('quotes')">Quotes & Poems</button>
+  </div>
+
   <div class="products">
 
-    <div class="card">
+    <!-- PDF Templates -->
+    <div class="card category-pdf">
       <img src="https://i.postimg.cc/Df6pt5fG/flatlay-bullet-journal-planner-decorative-stickers-pen-clean-workspace-organizing-self-improvement-c.jpg" alt="Daily Planner">
       <h3>Daily Planner Template</h3>
       <p>Organize your life with this clean productivity planner.</p>
@@ -205,7 +215,7 @@ footer {
       <a href="https://payhip.com/b/0cgJy" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
 
-    <div class="card">
+    <div class="card category-pdf">
       <img src="https://i.postimg.cc/g2ZDkKpK/Arrestox-Blue-Financial-Planning-Cover.jpg" alt="Financial Planner">
       <h3>Financial Tracker PDF</h3>
       <p>Track income, expenses, and savings with ease.</p>
@@ -213,7 +223,8 @@ footer {
       <a href="https://payhip.com/b/hgWQA" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
 
-    <div class="card">
+    <!-- eBooks -->
+    <div class="card category-ebook">
       <img src="https://i.postimg.cc/Qt27z29t/images-(1).jpg" alt="Study Guide">
       <h3>Study Guide eBook</h3>
       <p>Improve focus, memory, and academic performance.</p>
@@ -221,40 +232,18 @@ footer {
       <a href="https://payhip.com/b/wEqJP" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
 
+    <!-- Quotes & Poems (empty for now) -->
+    <div class="card category-quotes" style="display:none;">
+      <p>Coming soon!</p>
+    </div>
+
   </div>
 
+  <!-- Visit Full Store -->
   <div id="store-btn">
     <a href="https://payhip.com/NateArc" target="_blank"><button>Visit Full Store</button></a>
   </div>
-</section>
 
-<!-- Catalog -->
-<section id="catalog">
-  <h2>📦 Catalog</h2>
-  <div class="products">
-
-    <div class="card">
-      <img src="https://i.postimg.cc/qR4cMVBL/Jot-Form-Pdf-Templates-03-1.png" alt="PDF Templates">
-      <h3>PDF Templates</h3>
-      <p>Daily planners, financial trackers, and more PDFs to organize your life.</p>
-      <a href="https://payhip.com/NateArc" target="_blank"><button>View PDFs</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.postimg.cc/vH3NJhhH/photo-1609895720459-394a6a8c99ed.jpg" alt="eBooks">
-      <h3>eBooks</h3>
-      <p>Study guides, reference books, and more eBooks for learning and growth.</p>
-      <a href="https://payhip.com/NateArc" target="_blank"><button>View eBooks</button></a>
-    </div>
-
-    <div class="card">
-      <img src="https://i.postimg.cc/7Z1yJ0M2/il-fullxfull-4533301694-egko.jpg" alt="Quotes & Poems">
-      <h3>Quotes & Poems</h3>
-      <p>Inspiring quotes and poems to motivate and uplift your day.</p>
-      <a href="https://payhip.com/NateArc" target="_blank"><button>View Quotes & Poems</button></a>
-    </div>
-
-  </div>
 </section>
 
 <!-- About -->
@@ -291,6 +280,17 @@ const observer = new IntersectionObserver(entries => {
   });
 }, {threshold:0.2});
 cards.forEach(card => observer.observe(card));
+
+// Filter Function
+function filterCategory(category) {
+  const pdfs = document.querySelectorAll('.category-pdf');
+  const ebooks = document.querySelectorAll('.category-ebook');
+  const quotes = document.querySelectorAll('.category-quotes');
+
+  pdfs.forEach(card => card.style.display = category === 'pdf' ? 'block' : 'none');
+  ebooks.forEach(card => card.style.display = category === 'ebook' ? 'block' : 'none');
+  quotes.forEach(card => card.style.display = category === 'quotes' ? 'block' : 'none');
+}
 </script>
 
 </body>
