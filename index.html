@@ -12,18 +12,19 @@ body {
   font-family: Arial, sans-serif;
   color:#333;
   scroll-behavior: smooth;
-  background: url('https://cdn.openai.com/images/long_library_corridor_1024x1024.png') no-repeat center center fixed;
+  background: url('https://i.imgur.com/yourNewLibraryImageID.jpg') no-repeat center center fixed;
   background-size: cover;
   overflow-x: hidden;
 }
 
 /* Header */
 header {
-  background: rgba(10,37,64,0.85);
+  background: rgba(10,37,64,0.7);
   color:white;
   padding:60px 20px;
   text-align:center;
   backdrop-filter: blur(5px);
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
 }
 header h1 { margin:0; font-size:3em; }
 header p { margin:10px 0 25px 0; font-size:1.2em; }
@@ -43,7 +44,7 @@ section {
   margin:auto;
   position:relative;
   backdrop-filter: blur(2px);
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.25); /* lighter overlay */
   border-radius: 15px;
   margin-bottom:40px;
 }
@@ -124,14 +125,36 @@ a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
   border-radius:8px;
 }
 
-/* About & Contact */
-#about p, #contact p { font-size:1.1em; line-height:1.6; text-align:center; }
+/* About Me Section */
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.about-image img {
+  width: 300px;
+  max-width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+.about-image img:hover { transform: scale(1.05); }
+.about-text {
+  max-width: 600px;
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+/* Contact */
 #contact a { color:#0a2540; text-decoration:none; transition:0.3s; }
 #contact a:hover { color:#f4c842; }
 
 /* Footer */
 footer {
-  background: rgba(10,37,64,0.85);
+  background: rgba(10,37,64,0.7);
   color:white;
   text-align:center;
   padding:30px;
@@ -145,6 +168,7 @@ footer {
 @media(max-width:600px){
   header h1 { font-size:2.2em; }
   nav a { display:block; margin:10px 0; }
+  .about-container { flex-direction: column; }
 }
 </style>
 </head>
@@ -209,8 +233,15 @@ footer {
 </section>
 
 <section id="about">
-  <h2>📖 About Nate Archives</h2>
-  <p>Nate Archives provides affordable digital resources designed to help students, entrepreneurs, and creatives organize their work and reach their goals.</p>
+  <h2>📖 About Me</h2>
+  <div class="about-container">
+    <div class="about-image">
+      <img src="https://i.imgur.com/yourAboutMeImageID.jpg" alt="Nate Pinnock">
+    </div>
+    <div class="about-text">
+      <p>Hello! I’m Nate, the creator of Nate Archives. I provide affordable digital resources — from planners and financial trackers to eBooks and inspiring quotes & poems — designed to help students, entrepreneurs, and creatives stay organized and reach their goals. My mission is to make productivity and learning simple, enjoyable, and accessible for everyone.</p>
+    </div>
+  </div>
 </section>
 
 <section id="contact">
