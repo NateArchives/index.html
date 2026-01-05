@@ -6,7 +6,6 @@
 <title>Nate Archives</title>
 
 <style>
-/* Font & Base Setup */
 body {
   margin:0;
   font-family: 'Times New Roman', Times, serif;
@@ -15,10 +14,9 @@ body {
   perspective: 1px;
   perspective-origin: top;
   overflow-x: hidden;
-  background: #000; /* fallback */
+  background: #000;
 }
 
-/* Parallax Background */
 .bg-layer {
   position: fixed;
   top: 0;
@@ -33,26 +31,22 @@ body {
 
 /* Header */
 header {
-  background: rgba(10,37,64,0.75);
-  color:white;
-  padding:80px 20px;
+  padding:60px 20px;
   text-align:center;
-  backdrop-filter: blur(5px);
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  position: relative;
-  z-index: 2;
 }
 header h1 { 
   margin:0; 
-  font-size:4em; 
+  font-size:3.5em; 
   letter-spacing:2px;
+  color:#f4c842;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
   transition: transform 0.3s;
 }
 header h1:hover { transform: scale(1.05); }
-header p { margin:15px 0 30px 0; font-size:1.3em; }
+header p { margin:15px 0 30px 0; font-size:1.3em; color:#fff; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);}
 nav a {
   color:white;
-  margin:0 20px;
+  margin:0 15px;
   text-decoration:none;
   font-weight:bold;
   transition:0.3s;
@@ -62,26 +56,22 @@ nav a:hover { color:#f4c842; }
 
 /* Sections */
 section {
-  padding:100px 20px;
+  padding:80px 20px;
   max-width:1200px;
   margin:auto;
   position:relative;
-  backdrop-filter: blur(3px);
-  background: rgba(255,255,255,0.2);
   border-radius: 20px;
-  margin-bottom:60px;
 }
 section h2 {
-  font-size:2.5em;
+  font-size:2.3em;
   margin-bottom:50px;
   text-align:center;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
-  transition: transform 0.3s, color 0.3s;
-}
-section h2:hover {
   color:#f4c842;
-  transform: scale(1.05);
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+  display:inline-block;
+  transition: transform 0.3s;
 }
+section h2:hover { transform: scale(1.05); }
 
 /* Products grid */
 .products {
@@ -90,22 +80,23 @@ section h2:hover {
   gap:40px;
 }
 .card {
-  background:white;
+  background: rgba(255,255,255,0.85);
   border-radius:15px;
   box-shadow:0 10px 30px rgba(0,0,0,.15);
   padding:25px;
   text-align:center;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.4s, box-shadow 0.4s;
   opacity:0;
   transform: translateY(30px);
+  will-change: transform;
 }
 .card.visible { 
   opacity:1; 
   transform: translateY(0);
 }
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow:0 20px 40px rgba(0,0,0,.25);
+  transform: translateY(-12px) scale(1.03);
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
 }
 .card img {
   width:100%;
@@ -114,7 +105,7 @@ section h2:hover {
   transition: transform 0.3s;
 }
 .card img:hover { transform: scale(1.07); }
-.card h3 { font-size:1.5em; margin-bottom:12px; }
+.card h3 { font-size:1.4em; margin-bottom:10px; }
 .card p { font-size:1.05em; line-height:1.5; }
 
 /* Buttons */
@@ -135,13 +126,13 @@ button:hover {
 }
 a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
 
-/* Visit Full Store */
+/* Store Button */
 #store-btn { 
   display:block; 
   margin:60px auto 0; 
   text-align:center; 
 }
-#store-btn button { padding:18px 36px; font-size:1.3em; border-radius:10px; }
+#store-btn button { padding:18px 36px; font-size:1.2em; border-radius:10px; }
 
 /* About Me */
 .about-container {
@@ -160,7 +151,7 @@ a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
   transition: transform 0.3s;
 }
 .about-image img:hover { transform: scale(1.05); }
-.about-text { max-width: 650px; font-size: 1.15em; line-height: 1.7; }
+.about-text { max-width: 650px; font-size: 1.15em; line-height: 1.7; color:#fff; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
 
 /* Contact */
 #contact a { color:#0a2540; text-decoration:none; transition:0.3s; }
@@ -168,23 +159,13 @@ a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
 
 /* Footer */
 footer {
-  background: rgba(10,37,64,0.75);
+  background: rgba(10,37,64,0.7);
   color:white;
   text-align:center;
   padding:40px;
   font-size:1em;
-  backdrop-filter: blur(5px);
   border-radius: 15px;
   margin-bottom:40px;
-}
-
-/* Catalog Card Animations */
-.products .card {
-  transition: transform 0.35s, box-shadow 0.35s;
-}
-.products .card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
 }
 
 /* Responsive */
@@ -254,21 +235,21 @@ footer {
   <div class="products">
 
     <div class="card">
-      <img src="https://i.postimg.cc/Df6pt5fG/flatlay-bullet-journal-planner-decorative-stickers-pen-clean-workspace-organizing-self-improvement-c.jpg" alt="PDF Templates">
+      <img src="https://i.postimg.cc/qR4cMVBL/Jot-Form-Pdf-Templates-03-1.png" alt="PDF Templates">
       <h3>PDF Templates</h3>
       <p>Daily planners, financial trackers, and more PDFs to organize your life.</p>
       <a href="https://payhip.com/NateArc" target="_blank"><button>View PDFs</button></a>
     </div>
 
     <div class="card">
-      <img src="https://i.postimg.cc/Qt27z29t/images-(1).jpg" alt="eBooks">
+      <img src="https://i.postimg.cc/vH3NJhhH/photo-1609895720459-394a6a8c99ed.jpg" alt="eBooks">
       <h3>eBooks</h3>
       <p>Study guides, reference books, and more eBooks for learning and growth.</p>
       <a href="https://payhip.com/NateArc" target="_blank"><button>View eBooks</button></a>
     </div>
 
     <div class="card">
-      <img src="https://i.postimg.cc/L4QBtW6k/20251130-135725.jpg" alt="Quotes & Poems">
+      <img src="https://i.postimg.cc/7Z1yJ0M2/il-fullxfull-4533301694-egko.jpg" alt="Quotes & Poems">
       <h3>Quotes & Poems</h3>
       <p>Inspiring quotes and poems to motivate and uplift your day.</p>
       <a href="https://payhip.com/NateArc" target="_blank"><button>View Quotes & Poems</button></a>
@@ -303,7 +284,7 @@ footer {
 </footer>
 
 <script>
-// Animate product & catalog cards on scroll
+// Animate cards on scroll
 const cards = document.querySelectorAll('.card');
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -311,6 +292,15 @@ const observer = new IntersectionObserver(entries => {
   });
 }, {threshold:0.2});
 cards.forEach(card => observer.observe(card));
+
+// Parallax effect for cards
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset;
+  cards.forEach((card, i) => {
+    const speed = 0.05 + i*0.01;
+    card.style.transform = `translateY(${scrollTop * speed}px)`;
+  });
+});
 </script>
 
 </body>
