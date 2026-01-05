@@ -26,7 +26,7 @@ body {
 
 /* Smooth transition for card clicks */
 .card-click-transition {
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.7s ease, opacity 0.7s ease;
 }
 .card-click-transition.fade {
   opacity: 0;
@@ -183,11 +183,11 @@ function openSection(id){
 }
 
 function goToPayhip(card,url){
-  card.classList.add('fade'); // start smooth fade
+  card.classList.add('fade'); // smooth fade effect
   setTimeout(()=>{
-    window.open(url,'_blank');
-    card.classList.remove('fade'); // reset in case user stays
-  },300);
+    window.open(url,'_blank'); // open Payhip after 700ms
+    card.classList.remove('fade'); // reset
+  },700);
 }
 </script>
 
