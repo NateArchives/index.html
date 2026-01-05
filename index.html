@@ -6,6 +6,7 @@
 <title>Nate Archives</title>
 
 <style>
+/* Basic setup */
 body {
   margin:0;
   font-family: Arial, sans-serif;
@@ -18,110 +19,129 @@ body {
 header {
   background:#0a2540;
   color:white;
-  padding:40px 20px;
+  padding:60px 20px;
   text-align:center;
 }
 header h1 {
   margin:0;
-  font-size:2.8em;
+  font-size:3em;
 }
 header p {
-  margin:5px 0 20px 0;
-  font-size:1.1em;
+  margin:10px 0 25px 0;
+  font-size:1.2em;
 }
 nav a {
   color:white;
-  margin:0 15px;
+  margin:0 20px;
   text-decoration:none;
   font-weight:bold;
   transition: 0.3s;
 }
-nav a:hover {
-  color:#f4c842;
-}
+nav a:hover { color:#f4c842; }
 
 /* Sections */
 section {
-  padding:60px 20px;
+  padding:80px 20px;
   max-width:1200px;
   margin:auto;
+  position:relative;
 }
 
-/* Products */
+/* Section headers */
+section h2 {
+  font-size:2.2em;
+  margin-bottom:40px;
+  text-align:center;
+}
+
+/* Products grid */
 .products {
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap:30px;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap:40px;
 }
 .card {
   background:white;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
   padding:25px;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,.1);
-  transition: transform 0.3s, box-shadow 0.3s;
   text-align:center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  opacity:0;
+  transform: translateY(30px);
+}
+.card.visible { 
+  opacity:1; 
+  transform: translateY(0);
 }
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  transform: translateY(-8px);
+  box-shadow:0 15px 35px rgba(0,0,0,.2);
 }
 .card img {
   width:100%;
-  border-radius:10px;
+  border-radius:12px;
   margin-bottom:15px;
   transition: transform 0.3s;
 }
-.card img:hover {
-  transform: scale(1.05);
+.card img:hover { transform: scale(1.05); }
+.card h3 {
+  font-size:1.4em;
+  margin-bottom:10px;
+  transition: color 0.3s;
 }
+.card:hover h3 { color:#f4c842; }
+.card p { font-size:1em; line-height:1.5; }
+
+/* Buy button */
 button {
   background:#0a2540;
   color:white;
   border:none;
-  padding:12px 20px;
+  padding:12px 22px;
   border-radius:6px;
   cursor:pointer;
   font-size:1em;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.3s;
 }
 button:hover {
   background:#f4c842;
   color:#0a2540;
+  transform: scale(1.05);
 }
-a.buy-btn {
-  text-decoration:none;
-  display:inline-block;
-  margin-top:10px;
+a.buy-btn { text-decoration:none; display:inline-block; margin-top:12px; }
+
+/* Visit full store button */
+#store-btn { 
+  display:block; 
+  margin:50px auto 0; 
+  text-align:center; 
+}
+#store-btn button {
+  padding:15px 30px;
+  font-size:1.2em;
+  border-radius:8px;
 }
 
 /* About & Contact */
-#about p, #contact p {
-  font-size:1.05em;
-  line-height:1.6;
-}
-#contact a {
-  color:#0a2540;
-  text-decoration:none;
-  transition: 0.3s;
-}
-#contact a:hover {
-  color:#f4c842;
-}
+#about p, #contact p { font-size:1.1em; line-height:1.6; text-align:center; }
+#contact a { color:#0a2540; text-decoration:none; transition:0.3s; }
+#contact a:hover { color:#f4c842; }
 
 /* Footer */
 footer {
   background:#0a2540;
   color:white;
   text-align:center;
-  padding:25px;
-  margin-top:40px;
+  padding:30px;
+  margin-top:50px;
   font-size:0.95em;
 }
 
 /* Responsive */
 @media(max-width:600px){
-  header h1 { font-size:2em; }
-  nav a { display:block; margin:8px 0; }
+  header h1 { font-size:2.2em; }
+  nav a { display:block; margin:10px 0; }
 }
 </style>
 </head>
@@ -141,40 +161,37 @@ footer {
 <section id="store">
   <h2>📚 Our Collection</h2>
   <div class="products">
-
     <!-- Daily Planner -->
     <div class="card">
       <img src="https://via.placeholder.com/300x200?text=Daily+Planner" alt="Daily Planner">
       <h3>Daily Planner Template</h3>
       <p>Organize your life with this clean productivity planner.</p>
       <p><strong>$5</strong></p>
-      <a href="https://payhip.com/b/0cgJy" class="buy-btn" target="_blank">
-        <button>Buy Now</button>
-      </a>
+      <a href="https://payhip.com/b/0cgJy" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
-
     <!-- Financial Tracker -->
     <div class="card">
       <img src="https://via.placeholder.com/300x200?text=Financial+Tracker" alt="Financial Tracker">
       <h3>Financial Tracker PDF</h3>
       <p>Track income, expenses, and savings with ease.</p>
       <p><strong>$7</strong></p>
-      <a href="https://payhip.com/b/hgWQA" class="buy-btn" target="_blank">
-        <button>Buy Now</button>
-      </a>
+      <a href="https://payhip.com/b/hgWQA" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
-
     <!-- Study Guide -->
     <div class="card">
       <img src="https://via.placeholder.com/300x200?text=Study+Guide" alt="Study Guide">
       <h3>Study Guide eBook</h3>
       <p>Improve focus, memory, and academic performance.</p>
       <p><strong>$10</strong></p>
-      <a href="https://payhip.com/b/wEqJP" class="buy-btn" target="_blank">
-        <button>Buy Now</button>
-      </a>
+      <a href="https://payhip.com/b/wEqJP" class="buy-btn" target="_blank"><button>Buy Now</button></a>
     </div>
+  </div>
 
+  <!-- Visit full store button -->
+  <div id="store-btn">
+    <a href="https://payhip.com/NateArc" target="_blank">
+      <button>Visit Full Store</button>
+    </a>
   </div>
 </section>
 
@@ -193,6 +210,20 @@ footer {
 <footer>
   <p>© 2026 Nate Archives. All Rights Reserved.</p>
 </footer>
+
+<script>
+// Animate product cards on scroll
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {threshold:0.2});
+
+cards.forEach(card => observer.observe(card));
+</script>
 
 </body>
 </html>
