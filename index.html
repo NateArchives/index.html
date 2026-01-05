@@ -11,50 +11,117 @@ body {
   font-family: Arial, sans-serif;
   background:#f5f7fa;
   color:#333;
+  scroll-behavior: smooth;
 }
+
+/* Header */
 header {
   background:#0a2540;
   color:white;
-  padding:30px;
+  padding:40px 20px;
   text-align:center;
+}
+header h1 {
+  margin:0;
+  font-size:2.8em;
+}
+header p {
+  margin:5px 0 20px 0;
+  font-size:1.1em;
 }
 nav a {
   color:white;
   margin:0 15px;
   text-decoration:none;
   font-weight:bold;
+  transition: 0.3s;
 }
+nav a:hover {
+  color:#f4c842;
+}
+
+/* Sections */
 section {
-  padding:40px;
+  padding:60px 20px;
+  max-width:1200px;
+  margin:auto;
 }
+
+/* Products */
 .products {
   display:grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap:20px;
+  gap:30px;
 }
 .card {
   background:white;
-  padding:20px;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align:center;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+}
+.card img {
+  width:100%;
   border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  margin-bottom:15px;
+  transition: transform 0.3s;
+}
+.card img:hover {
+  transform: scale(1.05);
 }
 button {
   background:#0a2540;
   color:white;
   border:none;
-  padding:10px 15px;
-  border-radius:5px;
+  padding:12px 20px;
+  border-radius:6px;
   cursor:pointer;
+  font-size:1em;
+  transition: background 0.3s;
+}
+button:hover {
+  background:#f4c842;
+  color:#0a2540;
 }
 a.buy-btn {
   text-decoration:none;
   display:inline-block;
+  margin-top:10px;
 }
+
+/* About & Contact */
+#about p, #contact p {
+  font-size:1.05em;
+  line-height:1.6;
+}
+#contact a {
+  color:#0a2540;
+  text-decoration:none;
+  transition: 0.3s;
+}
+#contact a:hover {
+  color:#f4c842;
+}
+
+/* Footer */
 footer {
   background:#0a2540;
   color:white;
   text-align:center;
-  padding:20px;
+  padding:25px;
+  margin-top:40px;
+  font-size:0.95em;
+}
+
+/* Responsive */
+@media(max-width:600px){
+  header h1 { font-size:2em; }
+  nav a { display:block; margin:8px 0; }
 }
 </style>
 </head>
@@ -73,10 +140,11 @@ footer {
 
 <section id="store">
   <h2>📚 Our Collection</h2>
-
   <div class="products">
 
+    <!-- Daily Planner -->
     <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Daily+Planner" alt="Daily Planner">
       <h3>Daily Planner Template</h3>
       <p>Organize your life with this clean productivity planner.</p>
       <p><strong>$5</strong></p>
@@ -85,7 +153,9 @@ footer {
       </a>
     </div>
 
+    <!-- Financial Tracker -->
     <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Financial+Tracker" alt="Financial Tracker">
       <h3>Financial Tracker PDF</h3>
       <p>Track income, expenses, and savings with ease.</p>
       <p><strong>$7</strong></p>
@@ -94,11 +164,13 @@ footer {
       </a>
     </div>
 
+    <!-- Study Guide -->
     <div class="card">
+      <img src="https://via.placeholder.com/300x200?text=Study+Guide" alt="Study Guide">
       <h3>Study Guide eBook</h3>
       <p>Improve focus, memory, and academic performance.</p>
       <p><strong>$10</strong></p>
-      <a href="https://payhip.com/b/0cgJy" class="buy-btn" target="_blank">
+      <a href="https://payhip.com/b/wEqJP" class="buy-btn" target="_blank">
         <button>Buy Now</button>
       </a>
     </div>
@@ -113,7 +185,9 @@ footer {
 
 <section id="contact">
   <h2>📩 Contact Us</h2>
-  <p>Email: yourname@email.com</p>
+  <p>Email: <a href="mailto:thenatearchive@gmail.com">thenatearchive@gmail.com</a></p>
+  <p>Phone: <a href="tel:+18765629534">+1 876-562-9534</a></p>
+  <p>Phone: <a href="tel:+18763328664">+1 876-332-8664</a></p>
 </section>
 
 <footer>
