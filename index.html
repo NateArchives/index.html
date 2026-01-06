@@ -24,7 +24,7 @@ body {
 
 .hidden{display:none;}
 
-/* Smooth transition for card clicks */
+/* Smooth card fade-in */
 .card-click-transition {
   transition: transform 0.7s ease, opacity 0.7s ease;
 }
@@ -33,27 +33,13 @@ body {
   transform: scale(0.95);
 }
 
-/* Fade-in for header and sections */
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 1s forwards;
-}
+/* Fade-in animations */
+.fade-in {opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards;}
+@keyframes fadeInUp { to {opacity:1; transform:translateY(0);} }
 
-@keyframes fadeInUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Staggered fade-in for cards */
-.products .card {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-.products .card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Card staggered fade-in */
+.products .card {opacity:0; transform:translateY(20px); transition: transform 0.6s ease, opacity 0.6s ease;}
+.products .card.show {opacity:1; transform:translateY(0);}
 
 header{text-align:center;padding:70px 20px 50px;}
 header h1{font-size:3.6em;color:#f4c842;text-shadow:2px 2px 8px rgba(0,0,0,.6);}
@@ -76,8 +62,8 @@ section h2{text-align:center;color:#f4c842;font-size:2.4em;margin-bottom:45px;te
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{
   width:100%;
-  height:250px;       /* fixed height for all images */
-  object-fit:cover;   /* scales/crops image to fit */
+  height:250px;
+  object-fit:cover;
   border-radius:12px;
   margin-bottom:15px;
 }
@@ -93,7 +79,12 @@ button:hover{background:#f4c842;color:#0a2540;}
 #contact p,#contact a{color:#f4c842;font-weight:bold;text-shadow:1px 1px 4px rgba(0,0,0,.6);}
 footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;border-radius:16px;margin-bottom:40px;}
 
-/* Modal styles */
+/* AI chat */
+#aiChat {margin:30px auto; max-width:600px;}
+#aiResponses {height:250px; overflow-y:auto; background:rgba(255,255,255,0.9); padding:15px; border-radius:12px; margin-bottom:12px;}
+#aiInput {width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;}
+#aiChat button {margin-top:8px; width:100%; background:#0a2540; color:#f4c842; padding:12px; border:none; border-radius:8px; cursor:pointer;}
+
 .modal {
   display:none;
   position:fixed;
@@ -116,36 +107,6 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
   font-size:24px;
   cursor:pointer;
 }
-
-/* AI Assistant modal */
-#ai-modal {
-  display:none;
-  position:fixed;
-  z-index:1000;
-  left:0;top:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8);
-  justify-content:center;align-items:center;
-}
-#ai-modal .modal-content {
-  background:#0a2540;
-  color:white;
-  max-width:600px;
-  width:90%;
-  border-radius:16px;
-  padding:20px;
-  display:flex;
-  flex-direction:column;
-}
-#ai-chat-window {
-  height:300px;
-  overflow-y:auto;
-  background:#102040;
-  padding:10px;
-  border-radius:12px;
-  margin-bottom:12px;
-}
-#ai-input{padding:10px;border-radius:8px;border:none;width:80%;margin-right:6px;}
-#ai-send{padding:10px;border-radius:8px;border:none;background:#f4c842;color:#0a2540;cursor:pointer;}
 </style>
 </head>
 
@@ -254,28 +215,35 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <section id="contact" class="fade-in">
 <h2>Contact Us</h2>
 <p>Have a question, collaboration idea, or need support? I’d love to hear from you.</p>
-<p>Email: <a href="mailto:thenatearchive@gmail.com">thenatearchive@gmail.com</a></p>
-<p>Phone: <a href="tel:+18765629534">+1 876-562-9534</a></p>
-<p>Phone: <a href="tel:+18763328664">+1 876-332-8664</a></p>
+<p>Email: <a href="mailto:thenatearchive@gmail.com" style="color:#f4c842">thenatearchive@gmail.com</a></p>
+<p>Phone: <a href="tel:+18765629534" style="color:#f4c842">+1 876-562-9534</a></p>
+<p>Phone: <a href="tel:+18763328664" style="color:#f4c842">+1 876-332-8664</a></p>
+</section>
+
+<section id="ai" class="fade-in">
+<h2>✨✨✨ Assistant</h2>
+<div id="aiChat">
+  <div id="aiResponses"></div>
+  <input id="aiInput" type="text" placeholder="Ask ✨✨✨" />
+  <button onclick="askAI()">Send</button>
+</div>
 </section>
 
 <footer>© 2026 Nate Archives. All Rights Reserved.</footer>
 
-<!-- Product Modals -->
+<!-- Modals -->
 <div id="modalDaily" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalDaily')">&times;</span>
     <iframe src="https://payhip.com/b/0cgJy" width="100%" height="600" frameborder="0"></iframe>
   </div>
 </div>
-
 <div id="modalFinancial" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalFinancial')">&times;</span>
     <iframe src="https://payhip.com/b/hgWQA" width="100%" height="600" frameborder="0"></iframe>
   </div>
 </div>
-
 <div id="modalStudy" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalStudy')">&times;</span>
@@ -283,90 +251,50 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
   </div>
 </div>
 
-<!-- AI Assistant Modal -->
-<div id="ai-modal">
-  <div class="modal-content">
-    <span class="modal-close" onclick="closeAIChat()">&times;</span>
-    <div id="ai-chat-window"></div>
-    <div style="display:flex;">
-      <input id="ai-input" placeholder="Ask about products..." />
-      <button id="ai-send" onclick="sendAIMessage()">Send</button>
-    </div>
-  </div>
-</div>
-<button onclick="openAIChat()" style="position:fixed;bottom:20px;right:20px;padding:14px 18px;border:none;border-radius:50%;background:#f4c842;color:#0a2540;font-weight:bold;cursor:pointer;box-shadow:0 4px 15px rgba(0,0,0,.4);">AI</button>
-
 <script>
+// Section navigation
 function openSection(id){
   document.querySelectorAll('.hidden').forEach(sec=>sec.style.display="none");
   document.getElementById(id).style.display="block";
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
-function goToPayhip(card,url){
-  card.classList.add('fade'); 
-  setTimeout(()=>{
-    window.open(url,'_blank'); 
-    card.classList.remove('fade'); 
-  },700);
-}
-
-// Staggered fade-in for all cards on page load
-window.addEventListener('load', () => {
-  const cards = document.querySelectorAll('.products .card');
-  cards.forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add('show');
-    }, index * 150); 
-  });
-});
-
-// Modal functions
+// Modals
 function openModal(id){ document.getElementById(id).style.display='flex'; }
 function closeModal(id){ document.getElementById(id).style.display='none'; }
 
-// AI Assistant
-function openAIChat(){ document.getElementById('ai-modal').style.display='flex'; }
-function closeAIChat(){ document.getElementById('ai-modal').style.display='none'; }
+// Staggered card fade-in
+window.addEventListener('load', () => {
+  const cards = document.querySelectorAll('.products .card');
+  cards.forEach((card, index) => setTimeout(()=>card.classList.add('show'), index*150));
+});
 
-const productsInfo = {
-  "daily planner": "The Daily Planner helps you stay focused, structured, and in control of your days. Check it out in PDF Templates.",
-  "financial tracker": "The Financial Tracker lets you track income, expenses, and plan smarter money habits.",
-  "study guide": "The Study Guide eBook helps you learn efficiently and study with confidence.",
-  "pdf templates": "Our PDF Templates include the Daily Planner and Financial Tracker.",
-  "ebooks": "We currently have the Study Guide eBook available.",
-  "quotes": "Quotes coming soon!",
-  "poems": "Poems coming soon!"
-};
+// AI assistant
+async function askAI(){
+  const inputBox = document.getElementById('aiInput');
+  const resDiv = document.getElementById('aiResponses');
+  const message = inputBox.value.trim();
+  if(!message) return;
 
-function sendAIMessage(){
-  const input=document.getElementById('ai-input');
-  const chat=document.getElementById('ai-chat-window');
-  if(input.value.trim()==='') return;
+  const userMsg = document.createElement('p'); userMsg.textContent = "You: " + message;
+  resDiv.appendChild(userMsg);
 
-  const userMsg=document.createElement('p'); 
-  userMsg.style.color='#0a2540'; 
-  userMsg.innerHTML='<b>You:</b> '+input.value;
-  chat.appendChild(userMsg);
+  const botMsg = document.createElement('p');
+  botMsg.textContent = "✨✨✨ Assistant: thinking...";
+  botMsg.style.fontWeight = "bold";
+  resDiv.appendChild(botMsg);
 
-  const query=input.value.toLowerCase();
+  const response = await fetch("https://nate-archives-ai.vercel.app/api/ask", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message })
+  });
 
-  let response = "Sorry, I can only provide info about products in Nate Archives. Try asking about Daily Planner, Financial Tracker, Study Guide eBook, PDFs, or eBooks.";
+  const data = await response.json();
+  botMsg.textContent = "✨✨✨ Assistant: " + data.reply;
 
-  for(const key in productsInfo){
-    if(query.includes(key)){
-      response = productsInfo[key];
-      break;
-    }
-  }
-
-  const botMsg=document.createElement('p'); 
-  botMsg.style.color='#f4c842';
-  botMsg.innerHTML='<b>AI:</b> '+response;
-  chat.appendChild(botMsg);
-
-  chat.scrollTop=chat.scrollHeight;
-  input.value='';
+  resDiv.scrollTop = resDiv.scrollHeight;
+  inputBox.value = "";
 }
 </script>
 
