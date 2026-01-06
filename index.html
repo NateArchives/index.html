@@ -24,7 +24,7 @@ body {
 
 .hidden{display:none;}
 
-/* Smooth card fade-in */
+/* Smooth transition for card clicks */
 .card-click-transition {
   transition: transform 0.7s ease, opacity 0.7s ease;
 }
@@ -33,24 +33,48 @@ body {
   transform: scale(0.95);
 }
 
-/* Fade-in animations */
-.fade-in {opacity:0; transform:translateY(20px); animation:fadeInUp 1s forwards;}
-@keyframes fadeInUp { to {opacity:1; transform:translateY(0);} }
+/* Fade-in for header and sections */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s forwards;
+}
 
-/* Card staggered fade-in */
-.products .card {opacity:0; transform:translateY(20px); transition: transform 0.6s ease, opacity 0.6s ease;}
-.products .card.show {opacity:1; transform:translateY(0);}
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
+}
 
-header{text-align:center;padding:70px 20px 50px;}
+/* Staggered fade-in for cards */
+.products .card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.products .card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+header{text-align:center;padding:70px 20px 30px;}
 header h1{font-size:3.6em;color:#f4c842;text-shadow:2px 2px 8px rgba(0,0,0,.6);}
 header p{color:#fff;font-size:1.3em;text-shadow:1px 1px 5px rgba(0,0,0,.5);}
 
 nav a{color:#f4c842;margin:0 18px;font-weight:bold;text-decoration:none;}
 nav a:hover{color:#fff;}
 
-section{padding:80px 20px;max-width:1200px;margin:auto;}
+/* Quote of the Day */
+#quote-of-the-day h2{text-align:center;color:#f4c842;font-size:2em;text-shadow:1px 1px 4px rgba(0,0,0,.5);}
+#quote-of-the-day p{text-align:center;font-size:1.4em;color:#f4c842;font-style:italic;margin-top:15px;text-shadow:1px 1px 4px rgba(0,0,0,.5);}
+
+/* Search bar */
+#search-bar{ text-align:center; margin:40px 0; }
+#productSearch{ padding:10px 20px; font-size:1.1em; border-radius:8px; width:80%; max-width:400px; }
+
+/* Sections */
+section{padding:50px 20px;max-width:1200px;margin:auto;}
 section h2{text-align:center;color:#f4c842;font-size:2.4em;margin-bottom:45px;text-shadow:1px 1px 6px rgba(0,0,0,.5);}
 
+/* Products */
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:40px;}
 .card{
   background:rgba(255,255,255,.95);
@@ -62,7 +86,7 @@ section h2{text-align:center;color:#f4c842;font-size:2.4em;margin-bottom:45px;te
 .card:hover{transform:translateY(-8px) scale(1.02);}
 .card img{
   width:100%;
-  height:250px;
+  height:250px;       /* uniform height */
   object-fit:cover;
   border-radius:12px;
   margin-bottom:15px;
@@ -79,12 +103,7 @@ button:hover{background:#f4c842;color:#0a2540;}
 #contact p,#contact a{color:#f4c842;font-weight:bold;text-shadow:1px 1px 4px rgba(0,0,0,.6);}
 footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;border-radius:16px;margin-bottom:40px;}
 
-/* AI chat */
-#aiChat {margin:30px auto; max-width:600px;}
-#aiResponses {height:250px; overflow-y:auto; background:rgba(255,255,255,0.9); padding:15px; border-radius:12px; margin-bottom:12px;}
-#aiInput {width:100%; padding:12px; border-radius:8px; border:1px solid #ccc;}
-#aiChat button {margin-top:8px; width:100%; background:#0a2540; color:#f4c842; padding:12px; border:none; border-radius:8px; cursor:pointer;}
-
+/* Modal */
 .modal {
   display:none;
   position:fixed;
@@ -118,6 +137,17 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <p>A curated digital library of planners, tools, and books designed to help you organize your life, master your goals, and grow with purpose.</p>
 <nav><a href="#about">About</a><a href="#contact">Contact</a></nav>
 </header>
+
+<!-- Quote of the Day -->
+<section id="quote-of-the-day">
+  <h2>✨ Quote of the Day ✨</h2>
+  <p id="dailyQuote"></p>
+</section>
+
+<!-- Search Bar -->
+<section id="search-bar">
+  <input type="text" id="productSearch" placeholder="Search products...">
+</section>
 
 <section class="fade-in">
 <h2>Featured Creations</h2>
@@ -215,35 +245,28 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 <section id="contact" class="fade-in">
 <h2>Contact Us</h2>
 <p>Have a question, collaboration idea, or need support? I’d love to hear from you.</p>
-<p>Email: <a href="mailto:thenatearchive@gmail.com" style="color:#f4c842">thenatearchive@gmail.com</a></p>
-<p>Phone: <a href="tel:+18765629534" style="color:#f4c842">+1 876-562-9534</a></p>
-<p>Phone: <a href="tel:+18763328664" style="color:#f4c842">+1 876-332-8664</a></p>
-</section>
-
-<section id="ai" class="fade-in">
-<h2>✨✨✨ Assistant</h2>
-<div id="aiChat">
-  <div id="aiResponses"></div>
-  <input id="aiInput" type="text" placeholder="Ask ✨✨✨" />
-  <button onclick="askAI()">Send</button>
-</div>
+<p>Email: <a href="mailto:thenatearchive@gmail.com">thenatearchive@gmail.com</a></p>
+<p>Phone: <a href="tel:+18765629534">+1 876-562-9534</a></p>
+<p>Phone: <a href="tel:+18763328664">+1 876-332-8664</a></p>
 </section>
 
 <footer>© 2026 Nate Archives. All Rights Reserved.</footer>
 
-<!-- Modals -->
+<!-- Modals for Payhip products -->
 <div id="modalDaily" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalDaily')">&times;</span>
     <iframe src="https://payhip.com/b/0cgJy" width="100%" height="600" frameborder="0"></iframe>
   </div>
 </div>
+
 <div id="modalFinancial" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalFinancial')">&times;</span>
     <iframe src="https://payhip.com/b/hgWQA" width="100%" height="600" frameborder="0"></iframe>
   </div>
 </div>
+
 <div id="modalStudy" class="modal">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('modalStudy')">&times;</span>
@@ -252,50 +275,59 @@ footer{text-align:center;color:white;background:rgba(10,37,64,.75);padding:35px;
 </div>
 
 <script>
-// Section navigation
+// Quote of the Day
+const quotes = [
+  "The secret of getting ahead is getting started. – Mark Twain",
+  "Discipline is the bridge between goals and accomplishment. – Jim Rohn",
+  "Don’t watch the clock; do what it does. Keep going. – Sam Levenson",
+  "Your goals are the road maps that guide you. – Les Brown",
+  "Small daily improvements are the key to staggering long-term results. – Unknown"
+];
+document.getElementById("dailyQuote").innerText =
+  quotes[Math.floor(Math.random() * quotes.length)];
+
+// Search functionality
+const searchInput = document.getElementById('productSearch');
+searchInput.addEventListener('input', function(){
+  const query = this.value.toLowerCase();
+  const allCards = document.querySelectorAll('.products .card');
+  
+  allCards.forEach(card => {
+    const title = card.querySelector('h3').innerText.toLowerCase();
+    if(title.includes(query)) card.style.display = 'block';
+    else card.style.display = 'none';
+  });
+});
+
+// Section toggles
 function openSection(id){
   document.querySelectorAll('.hidden').forEach(sec=>sec.style.display="none");
   document.getElementById(id).style.display="block";
   document.getElementById(id).scrollIntoView({behavior:"smooth"});
 }
 
+// Card click smooth fade
+function goToPayhip(card,url){
+  card.classList.add('fade');
+  setTimeout(()=>{
+    window.open(url,'_blank'); 
+    card.classList.remove('fade'); 
+  },700);
+}
+
+// Staggered fade-in
+window.addEventListener('load', () => {
+  const cards = document.querySelectorAll('.products .card');
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add('show');
+    }, index * 150); 
+  });
+});
+
 // Modals
 function openModal(id){ document.getElementById(id).style.display='flex'; }
 function closeModal(id){ document.getElementById(id).style.display='none'; }
-
-// Staggered card fade-in
-window.addEventListener('load', () => {
-  const cards = document.querySelectorAll('.products .card');
-  cards.forEach((card, index) => setTimeout(()=>card.classList.add('show'), index*150));
-});
-
-// AI assistant
-async function askAI(){
-  const inputBox = document.getElementById('aiInput');
-  const resDiv = document.getElementById('aiResponses');
-  const message = inputBox.value.trim();
-  if(!message) return;
-
-  const userMsg = document.createElement('p'); userMsg.textContent = "You: " + message;
-  resDiv.appendChild(userMsg);
-
-  const botMsg = document.createElement('p');
-  botMsg.textContent = "✨✨✨ Assistant: thinking...";
-  botMsg.style.fontWeight = "bold";
-  resDiv.appendChild(botMsg);
-
-  const response = await fetch("https://nate-archives-ai.vercel.app/api/ask", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message })
-  });
-
-  const data = await response.json();
-  botMsg.textContent = "✨✨✨ Assistant: " + data.reply;
-
-  resDiv.scrollTop = resDiv.scrollHeight;
-  inputBox.value = "";
-}
 </script>
 
 </body>
